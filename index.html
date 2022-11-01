@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Form Validation - The Odin Project</title>
+    <script src="script.js" defer></script>  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form>
+        <h1 class="formTitle">Create an Account</h1>
+        <h3 class="instructions">Please fill in all of the fields below:</h3>
+        <div class="inputContainer">
+            <label for="mail">
+                E-mail:
+                <input type="email" name="mail" id="mail" placeholder="email@example.com">
+            </label>
+            <div class="icon mail"></div>
+        </div>
+        <div class="inputContainer">
+            <label for="country">
+                Country:
+                <input type="text" name="country" id="country" placeholder="United States of America">
+            </label>
+            <div class="icon country"></div>
+        </div>
+        <div class="inputContainer">
+            <label for="zipcode">
+                Zipcode:
+                <input type="text" name="zipcode" id="zipcode" placeholder="17891-5413">
+            </label>
+            <div class="icon zipcode"></div>
+        </div>
+        <div class="inputContainer">
+            <label for="pwd">
+                Password:
+                <input type="text" name="pwd" id="pwd">
+            </label>
+            <div class="icon pwd"></div>
+        </div>
+        <div class="inputContainer">
+            <label for="pwdConfirm">
+                Re-enter Password:
+                <input type="text" name="pwdConfirm" id="pwdConfirm">
+            </label>
+            <div class="icon pwdConfirm"></div>
+        </div>
+        <button type="submit" id="submit">Submit</button>
+    </form>
+</body>
+
+</html>

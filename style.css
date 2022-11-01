@@ -1,0 +1,48 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+form {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formTitle,
+.instructions {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.instructions.empty {
+    color: red;
+}
+
+label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+input.empty {
+    background-color: pink;
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputContainer > label,
+#submit,
+.instructions,
+.formTitle {
+    width: 90%;
+}
+
+.inputContainer > .icon {
+    width: 10%;
+}
