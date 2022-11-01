@@ -12,7 +12,9 @@ email.addEventListener("input", (e) => {
     }
 })
 
-email.addEventListener("focusout", (e) => checkInputValidFocusOut(email))
+allInputs.forEach((inputElement) => {
+    inputElement.addEventListener("focusout", (e) => checkInputValidFocusOut(inputElement))
+})
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -26,10 +28,10 @@ function checkInputValidFocusOut(inputElement) {
         inputElement.value === ''
     ) {
         inputElement.classList.add("empty");
-        addInputIcon(email, "⚠️");
+        addInputIcon(inputElement, "⚠️");
     } else {
-        console.log(email.validity);
-        addInputIcon(email, "✔️");
+        console.log(inputElement.validity);
+        addInputIcon(inputElement, "✔️");
     }
 }
 
