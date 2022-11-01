@@ -26,8 +26,13 @@ label {
     font-weight: 600;
 }
 
-input.empty {
+input:invalid,
+input.empty  {
     background-color: pink;
+}
+
+input:valid {
+    background-color: white;
 }
 
 .inputContainer {
@@ -43,7 +48,8 @@ input.empty {
     width: 90%;
 }
 
-.inputContainer > .icon {
+.inputContainer > .icon,
+span.icon {
     width: 10%;
 }
 
@@ -53,4 +59,25 @@ input.empty {
     font-size: 12px;
     text-align: left;
     color: orangered;
+}
+
+.messageDiv {
+    width: 100%;
+    padding-left: 45%;
+    font-size: 12px;
+}
+
+.messageStandard {
+    color: black;
+}
+
+.messageSpecific {
+    color: orangered;
+}
+
+.messageStandard.strike,
+.messageSpecific.strike {
+    text-decoration: line-through;
+    text-decoration-color: black;
+    color: black;
 }

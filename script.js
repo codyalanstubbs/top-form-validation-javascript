@@ -34,39 +34,34 @@ simpleInputs.forEach((inputObject) => {
 })
 
 pwd.addEventListener("input", (e) => {
-    const pwdMessages = document.querySelectorAll(`.message.${pwd.id}`)
+    const pwdMessages = document.querySelectorAll(`.messageDiv`)
     pwdMessages.forEach((pwdMessage) => {pwdMessage.remove()})
 
-    if (pwd.validity.tooShort) {
+    const conditionsArray = [
+        {condition: pwd.validity.tooShort, messageText: "8 characters", criteriaClass: "eightChars"},
+        {condition: !hasLowerCase(pwd.value), messageText: "1 lower case letter", criteriaClass: "lowerCase"},
+        {condition: !hasUpperCase(pwd.value), messageText: "1 upper case letter", criteriaClass: "upperCase"},
+        {condition: !hasNumber(pwd.value), messageText: "1 number", criteriaClass: "number"},
+        {condition: !hasSpecialCharacters(pwd.value), messageText: "1 special character", criteriaClass: "specialChar"}
+    ]
+    
+    conditionsArray.forEach((conditionObject) => {
+        if (conditionObject.condition) {
+            insertPwdInstructions(pwd, conditionObject.messageText, conditionObject.criteriaClass, "warn");
+        } else {
+            insertPwdInstructions(pwd, conditionObject.messageText, conditionObject.criteriaClass, "strike");
+        }
+    })
+
+    if (pwd.validity.tooShort || !hasLowerCase(pwd.value) || !hasUpperCase(pwd.value) ||
+        !hasNumber(pwd.value) || !hasSpecialCharacters(pwd.value)
+    ) {
         pwd.classList.add("empty");
         addInputIcon(pwd, "⚠️");
-        insertInputInstructions(pwd, "Use at least 8 characters");
+    } else {
+        pwd.classList.remove("empty");
+        addInputIcon(pwd, "✔️");
     }
-
-    if (!hasLowerCase(pwd.value)) {
-        pwd.classList.add("empty");
-        addInputIcon(pwd, "⚠️");
-        insertInputInstructions(pwd, "Use at least 1 lower case letter");
-    }
-
-    if (!hasUpperCase(pwd.value)) {
-        pwd.classList.add("empty");
-        addInputIcon(pwd, "⚠️");
-        insertInputInstructions(pwd, "Use at least 1 upper case letter");
-    }
-
-    if (!hasNumber(pwd.value)) {
-        pwd.classList.add("empty");
-        addInputIcon(pwd, "⚠️");
-        insertInputInstructions(pwd, "Use at least 1 number");
-    }
-
-    if (!hasSpecialCharacters(pwd.value)) {
-        pwd.classList.add("empty");
-        addInputIcon(pwd, "⚠️");
-        insertInputInstructions(pwd, "Use at least 1 special character");
-    }
-
 })
 
 function hasLowerCase(str) {
@@ -83,6 +78,38 @@ function hasNumber(str) {
 
 function hasSpecialCharacters(str) {
     return /[~`!#$%?\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+}
+
+function insertPwdInstructions(pwdElement, messageText, criteriaClass, warnOrStrike) {
+    const inputContainerMail = document.querySelector(`.inputContainer.${pwdElement.id}`);
+    
+    const messageDiv = document.createElement("div");
+    messageDiv.classList = `messageDiv ${criteriaClass}`;
+
+    const textIcon = document.createElement("span");
+    textIcon.classList = `icon ${criteriaClass}`;
+
+    const standardText = document.createElement("span");
+    standardText.classList = `messageStandard ${criteriaClass}`;
+    standardText.textContent = "Use at least ";
+
+    const specificText = document.createElement("span");
+    specificText.classList = `messageSpecific ${criteriaClass}`;
+    specificText.textContent = messageText;
+
+    if (warnOrStrike === "warn") { 
+        textIcon.textContent = "⚠️";   
+    } else if (warnOrStrike === "strike") { 
+        textIcon.textContent = "✔️";
+        specificText.classList.add("strike");
+        standardText.classList.add("strike");
+    }
+
+    messageDiv.appendChild(textIcon);
+    messageDiv.appendChild(standardText);
+    messageDiv.appendChild(specificText);
+
+    inputContainerMail.parentElement.insertBefore(messageDiv, inputContainerMail.nextElementSibling)
 }
 
 function insertInputInstructions(inputElement, messageText) {
