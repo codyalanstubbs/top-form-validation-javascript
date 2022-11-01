@@ -16,35 +16,35 @@
     <form>
         <h1 class="formTitle">Create an Account</h1>
         <h3 class="instructions">Please fill in all of the fields below:</h3>
-        <div class="inputContainer">
+        <div class="inputContainer mail">
             <label for="mail">
                 E-mail:
                 <input type="email" name="mail" id="mail" placeholder="email@example.com">
             </label>
             <div class="icon mail"></div>
         </div>
-        <div class="inputContainer">
+        <div class="inputContainer country">
             <label for="country">
                 Country:
                 <input type="text" name="country" id="country" placeholder="United States of America">
             </label>
             <div class="icon country"></div>
         </div>
-        <div class="inputContainer">
+        <div class="inputContainer zipcode">
             <label for="zipcode">
                 Zipcode:
-                <input type="text" name="zipcode" id="zipcode" placeholder="17891-5413">
+                <input type="text" name="zipcode" id="zipcode" placeholder="e.g.: 17891" pattern="[0-9]*">
             </label>
             <div class="icon zipcode"></div>
         </div>
-        <div class="inputContainer">
+        <div class="inputContainer pwd">
             <label for="pwd">
                 Password:
                 <input type="text" name="pwd" id="pwd">
             </label>
             <div class="icon pwd"></div>
         </div>
-        <div class="inputContainer">
+        <div class="inputContainer pwdConfirm">
             <label for="pwdConfirm">
                 Re-enter Password:
                 <input type="text" name="pwdConfirm" id="pwdConfirm">
